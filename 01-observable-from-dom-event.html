@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RxJS Sample 1</title>
+</head>
+<body>
+  <button id="clickMe">Click me</button>
+  <div id="output">This is the output div</div>
+
+  <script type="module">
+    import { fromEvent } from 'https://cdn.skypack.dev/rxjs';
+
+    const button = document.getElementById('clickMe');
+    const outputDiv = document.getElementById('output');
+
+    const clicks$ = fromEvent(button, 'click');
+
+    const subscription = clicks$.subscribe(() => {
+      const timestamp = `Time: ${new Date().toLocaleTimeString()}`;
+      outputDiv.innerHTML = `<p>${timestamp}</p>${outputDiv.innerHTML}`;
+    });
+  </script>
+</body>
+</html>
